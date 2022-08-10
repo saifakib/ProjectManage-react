@@ -14,7 +14,6 @@ const INIT_TASK = {
   const AddTask = ({ id, project }) => {
     const [state, setState] = useState({ ...INIT_TASK });
     const users = useStoreState((state) => state.users.users)
-    console.log(typeof users)
     const AddTask = useStoreActions((actions) => actions.tasks.AddTask);
     const UpdateProject = useStoreActions((actions) => actions.projects.UpdateProject);
   
@@ -67,7 +66,7 @@ const INIT_TASK = {
             <label htmlFor="assign">Assign: </label>
             <select name="assign" onChange={handleInputChange}>
                 { Object.keys(users).map((id) => (
-                    <option value={id}>{users[id].username}</option>
+                    <option key={id} value={id}>{users[id].username}</option>
                 ))}
             </select>
           </div>

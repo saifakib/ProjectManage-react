@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {AppBar, Box, Toolbar, Typography,Button, Container, Stack } from "@mui/material";
+import UserModalInput from '../AddUser/UserModalInput';
+import ProjectModalInput from '../AddProject/projectModalInput';
 
 const Navbar = () => {
+  const [openU, setOpenU] = useState(false);
+  const handleU = () => setOpenU(!openU);
+  const [openP, setOpenP] = useState(false);
+  const handleP = () => setOpenP(!openP);
   return (
     <>
     <Box sx={{ flexGrow: 1 }}>
@@ -11,8 +17,10 @@ const Navbar = () => {
             <Stack sx={{ flexGrow: 1 }}>
                 <Typography variant="h4" color={'#4a148c'}>................</Typography>
             </Stack>
-            <Button color="inherit">Add Project</Button>
-            <Button color="inherit">Add User</Button>
+            <Button onClick={handleP} color="inherit">Add Project</Button>
+            <ProjectModalInput open={openP} handleClose={handleP} />
+            <Button onClick={handleU} color="inherit">Add User</Button>
+            <UserModalInput open={openU} handleClose={handleU} />
           </Toolbar>
         </Container>
       </AppBar>
